@@ -1,4 +1,4 @@
-/* Reseteo básico para quitar márgenes por defecto */
+/* Reseteo básico */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Hacemos que el body ocupe toda la pantalla para empujar el footer abajo */
+/* El body ocupa toda la pantalla para empujar el footer abajo */
 body {
     display: flex;
     flex-direction: column;
@@ -20,16 +20,15 @@ header {
     align-items: center;
     padding: 20px 50px;
     background-color: #ffffff;
-    /* Una liniecita gris clara abajo como se ve en la imagen */
     border-bottom: 1px solid #eaeaea; 
 }
 
 .logo {
-    height: 90px; /* Ajustá esto si tu logo.png es muy grande o chiquito */
+    height: 90px; 
 }
 
 .header-text {
-    color: #0c1b98; /* Un azul oscurito parecido al del logo */
+    color: #0c1b98;
     text-align: right;
     font-weight: bold;
     font-size: 15px;
@@ -38,18 +37,19 @@ header {
 
 /* --- ESTILOS DEL CUERPO (MAIN) --- */
 main {
-    flex-grow: 1; /* Esto hace que el centro agarre todo el espacio sobrante */
+    flex-grow: 1; 
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fcfcfc; /* Un gris super clarito para el fondo */
+    background-color: #fcfcfc; 
 }
 
 h1 {
-    font-size: 4.5rem; /* Letra bien grandota */
+    font-size: 4.5rem; 
     color: #333333;
-    font-weight: 900; /* Letra bien negrita (bold) */
+    font-weight: 900; 
     text-transform: uppercase;
+    text-align: center;
 }
 
 /* --- ESTILOS DEL PIE DE PÁGINA (FOOTER) --- */
@@ -57,18 +57,65 @@ footer {
     background-color: #1c2bc0; /* Azul chivo del footer */
     color: #ffffff;
     text-align: center;
-    padding: 25px 20px 30px 20px;
+    padding: 20px 20px 30px 20px;
 }
 
 footer h3 {
-    font-size: 15px;
+    font-size: 16px;
     text-decoration: underline;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Separación con las cajitas de los nombres */
 }
 
+/* Contenedor de las tarjetitas */
 .integrantes {
     display: flex;
     justify-content: center;
-    gap: 40px; /* Separación entre los dos nombres */
-    font-size: 14px;
+    align-items: center;
+    gap: 40px; /* Espacio entre el integrante 1 y el 2 */
+    flex-wrap: wrap; /* Por si lo ven en celular, que no se desconfigure */
+}
+
+/* Estilo de cada tarjetita de integrante */
+.integrante {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre la foto y el texto */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondito semi-transparente */
+    padding: 10px 25px 10px 10px; /* Padding ajustado para la foto */
+    border-radius: 50px; /* Bordes bien redonditos (estilo píldora) */
+    transition: all 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Efecto salvaje cuando le pasás el mouse */
+.integrante:hover {
+    transform: translateY(-5px); /* Se levanta un poquito */
+    background-color: rgba(255, 255, 255, 0.2); /* Brilla más */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombrita elegante */
+}
+
+/* Estilo para las fotos */
+.foto-perfil {
+    width: 55px; /* Tamaño de la foto para que no estorbe */
+    height: 55px;
+    border-radius: 50%; /* La hace redondita cabal */
+    object-fit: cover; /* Evita que la foto se estire y se vea fea */
+    border: 2px solid #ffffff; /* Borde blanco para que resalte */
+}
+
+/* Contenedor del texto a la par de la foto */
+.info-integrante {
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Alineado a la izquierda */
+}
+
+.nombre {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.codigo {
+    font-size: 13px;
+    color: #d1d8ff; /* Un celestito claro para que haga contraste */
+    margin-top: 3px;
 }
