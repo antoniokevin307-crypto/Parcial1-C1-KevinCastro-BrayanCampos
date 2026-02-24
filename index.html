@@ -3,45 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parcial Primer Cómputo</title>
+    <title>Calanza el Nahual - POS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <img src="logo.png" alt="Logo UGB" class="logo">
-        <div class="header-text">
-            Parcial Primer Cómputo Ingeniería en Sistemas y<br>
-            Redes Informáticas
-        </div>
+        <img src="logo.png" alt="UGB Logo" class="logo">
+        <nav>
+            <button onclick="verPantalla('registro')" class="btn-nav">Nueva Orden</button>
+            <button onclick="verPantalla('cocina')" class="btn-nav">Cocina e Historial</button>
+        </nav>
     </header>
 
     <main>
-        <h1>TU PAGINA WEB AQUI</h1>
+        <section id="registro" class="view">
+            <div class="card-ordenador">
+                <h1>Pupusería Calanza el Nahual</h1>
+                
+                <p class="instruccion">INGRESO DE DATOS DE PEDIDOS</p>
+                
+                <div class="campo-cliente">
+                    <label>Nombre del Cliente:</label>
+                    <input type="text" id="cliente" placeholder="Escribí el nombre del cliente aquí">
+                </div>
+                
+                <div class="menu-grid">
+                    <div class="col">
+                        <h3>Pupusas Tradicionales</h3>
+                        <select id="item-pupusa">
+                            <option value="Revueltas" data-p="0.75">Revueltas - $0.75</option>
+                            <option value="Frijol con Queso" data-p="0.75">Frijol con Queso - $0.75</option>
+                            <option value="Chicharrón con Queso" data-p="0.75">Chicharrón con Queso - $0.75</option>
+                            <option value="Chicharrón" data-p="0.80">Chicharrón - $0.80</option>
+                            <option value="Frijol" data-p="0.70">Frijol - $0.70</option>
+                            <option value="Queso" data-p="0.80">Queso - $0.80</option>
+                            <option value="Loroco" data-p="0.80">Loroco - $0.80</option>
+                            <option value="Ajo" data-p="0.80">Ajo - $0.80</option>
+                            <option value="Jalapeño" data-p="0.80">Jalapeño - $0.80</option>
+                            <option value="Ayote" data-p="0.80">Ayote - $0.80</option>
+                            <option value="Cebollín" data-p="0.80">Cebollín - $0.80</option>
+                            <option value="Chile Verde" data-p="0.80">Chile Verde - $0.80</option>
+                            <option value="Revueltas con Loroco" data-p="0.80">Revueltas con Loroco - $0.80</option>
+                            <option value="Especial (4 a 5 ing)" data-p="1.50">Especial (4-5 ing) - $1.50</option>
+                            <option value="Pupusa Loca" data-p="2.00">Pupusa Loca - $2.00</option>
+                        </select>
+                        <input type="number" id="cant-pupusa" value="1" min="1">
+                        <button onclick="agregarAlCarrito('pupusa')" class="btn-add">Añadir Pupusa +</button>
+                    </div>
+
+                    <div class="col">
+                        <h3>Bebidas Frías y Calientes</h3>
+                        <select id="item-bebida">
+                            <option value="Soda" data-p="0.75">Soda - $0.75</option>
+                            <option value="Café" data-p="0.60">Café - $0.60</option>
+                            <option value="Chocolate" data-p="1.00">Chocolate - $1.00</option>
+                            <option value="Fresco Natural" data-p="0.80">Fresco Natural - $0.80</option>
+                            <option value="Agua Embotellada" data-p="0.50">Agua - $0.50</option>
+                        </select>
+                        <input type="number" id="cant-bebida" value="1" min="1">
+                        <button onclick="agregarAlCarrito('bebida')" class="btn-add">Añadir Bebida +</button>
+                    </div>
+                </div>
+
+                <div id="resumen-temporal">
+                    <h4>Pre-visualización de la Orden:</h4>
+                    <ul id="lista-items"></ul>
+                    <h2 id="total-temporal">Total: $0.00</h2>
+                    <button id="btnFinalizar" onclick="finalizarOrden()">Mandar a Cocina</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="cocina" class="view" style="display:none;">
+            <h2 style="text-align:center; margin-bottom:20px;">Órdenes en Proceso</h2>
+            <div id="contenedor-pedidos" class="grid-cocina"></div>
+        </section>
+
+        <div id="modal-ticket" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <span class="close-modal" onclick="cerrarTicket()">&times;</span>
+                <div id="contenido-ticket"></div>
+                <button onclick="cerrarTicket()" class="btn-cerrar-ticket">Cerrar Ticket</button>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <h3>Integrantes del Equipo</h3>
         <div class="integrantes">
-            
-            <div class="integrante">
-                <img src="Toño.JPG" alt="Foto Integrante 1" class="foto-perfil">
-                <div class="info-integrante">
-                    <span class="nombre">Kevin Antonio Castro Araujo</span>
-                    <span class="codigo">Código: SMSS032024</span>
-                </div>
+            <div class="perfil">
+                <img src="Toño.JPG" alt="Kevin">
+                <p>Kevin Antonio Castro Araujo<br><span>SMSS032024</span></p>
             </div>
-
-            <div class="integrante">
-                <img src="Adaly.JPG" alt="Foto Integrante 2" class="foto-perfil">
-                <div class="info-integrante">
-                    <span class="nombre">Brayan Adaly Campos Martinez</span>
-                    <span class="codigo">Código: SMSS046824</span>
-                </div>
+            <div class="perfil">
+                <img src="Adaly.JPG" alt="Adaly">
+                <p>Brayan Adaly Campos Martinez<br><span>SMSS046824</span></p>
             </div>
-
         </div>
     </footer>
 
+    <script src="app.js"></script>
 </body>
 </html>

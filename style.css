@@ -1,121 +1,51 @@
-/* Reseteo básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+:root {
+    --primary: #0c1b98;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --purple: #6f42c1;
+    --bg: #f0f4f8;
 }
 
-/* El body ocupa toda la pantalla para empujar el footer abajo */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background: var(--bg); min-height: 100vh; display: flex; flex-direction: column; }
 
-/* --- ESTILOS DEL ENCABEZADO (HEADER) --- */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #eaeaea; 
-}
+header { background: white; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--primary); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.logo { height: 55px; }
+.btn-nav { background: var(--primary); color: white; border: none; padding: 10px 22px; border-radius: 25px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.btn-nav:hover { background: #08126e; transform: scale(1.05); }
 
-.logo {
-    height: 90px; 
-}
+main { flex: 1; padding: 30px; }
+.view { animation: fadeIn 0.4s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-.header-text {
-    color: #0c1b98;
-    text-align: right;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 1.3;
-}
+.card-ordenador { background: white; padding: 30px; border-radius: 18px; max-width: 800px; margin: auto; box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+.instruccion { color: #777; text-align: center; margin-bottom: 25px; font-weight: 500; }
+.campo-cliente label { font-weight: bold; display: block; margin-bottom: 8px; color: var(--primary); }
+input[type="text"], input[type="number"], select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #eee; font-size: 15px; outline: none; transition: 0.3s; }
+input:focus, select:focus { border-color: var(--primary); }
 
-/* --- ESTILOS DEL CUERPO (MAIN) --- */
-main {
-    flex-grow: 1; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fcfcfc; 
-}
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 25px 0; padding-top: 25px; border-top: 1px solid #eee; }
+.col h3 { margin-bottom: 15px; font-size: 17px; color: #333; border-left: 5px solid var(--primary); padding-left: 12px; }
+.btn-add { background: #007bff; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 8px; transition: 0.2s; }
+.btn-add:hover { background: #0056b3; }
 
-h1 {
-    font-size: 4.5rem; 
-    color: #333333;
-    font-weight: 900; 
-    text-transform: uppercase;
-    text-align: center;
-}
+#resumen-temporal { margin-top: 25px; background: #fdfdfd; padding: 20px; border: 2px dashed #ddd; border-radius: 12px; }
+#lista-items li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f1f1; align-items: center; }
+#lista-items button { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 18px; }
+#btnFinalizar { width: 100%; padding: 18px; background: var(--success); color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 1.1rem; cursor: pointer; margin-top: 15px; box-shadow: 0 4px 12px rgba(40,167,69,0.2); }
 
-/* --- ESTILOS DEL PIE DE PÁGINA (FOOTER) --- */
-footer {
-    background-color: #1c2bc0; /* Azul chivo del footer */
-    color: #ffffff;
-    text-align: center;
-    padding: 20px 20px 30px 20px;
-}
+.grid-cocina { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
 
-footer h3 {
-    font-size: 16px;
-    text-decoration: underline;
-    margin-bottom: 20px; /* Separación con las cajitas de los nombres */
-}
+/* MODAL TICKET */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(5px); }
+.modal-content { background: white; padding: 30px; border-radius: 15px; width: 380px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.4); animation: pop 0.3s ease; }
+@keyframes pop { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.ticket-header { text-align: center; border-bottom: 2px dashed #ccc; padding-bottom: 15px; margin-bottom: 15px; }
+.ticket-body { font-family: 'Courier New', Courier, monospace; line-height: 1.6; }
+.btn-cerrar-ticket { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; margin-top: 20px; font-weight: bold; cursor: pointer; }
 
-/* Contenedor de las tarjetitas */
-.integrantes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px; /* Espacio entre el integrante 1 y el 2 */
-    flex-wrap: wrap; /* Por si lo ven en celular, que no se desconfigure */
-}
-
-/* Estilo de cada tarjetita de integrante */
-.integrante {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Espacio entre la foto y el texto */
-    background-color: rgba(255, 255, 255, 0.1); /* Fondito semi-transparente */
-    padding: 10px 25px 10px 10px; /* Padding ajustado para la foto */
-    border-radius: 50px; /* Bordes bien redonditos (estilo píldora) */
-    transition: all 0.3s ease; /* Transición suave para el hover */
-}
-
-/* Efecto salvaje cuando le pasás el mouse */
-.integrante:hover {
-    transform: translateY(-5px); /* Se levanta un poquito */
-    background-color: rgba(255, 255, 255, 0.2); /* Brilla más */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombrita elegante */
-}
-
-/* Estilo para las fotos */
-.foto-perfil {
-    width: 55px; /* Tamaño de la foto para que no estorbe */
-    height: 55px;
-    border-radius: 50%; /* La hace redondita cabal */
-    object-fit: cover; /* Evita que la foto se estire y se vea fea */
-    border: 2px solid #ffffff; /* Borde blanco para que resalte */
-}
-
-/* Contenedor del texto a la par de la foto */
-.info-integrante {
-    display: flex;
-    flex-direction: column;
-    text-align: left; /* Alineado a la izquierda */
-}
-
-.nombre {
-    font-weight: bold;
-    font-size: 15px;
-}
-
-.codigo {
-    font-size: 13px;
-    color: #d1d8ff; /* Un celestito claro para que haga contraste */
-    margin-top: 3px;
-}
+footer { background: var(--primary); color: white; padding: 25px; margin-top: auto; }
+.integrantes { display: flex; justify-content: center; gap: 50px; }
+.perfil { display: flex; align-items: center; gap: 15px; }
+.perfil img { width: 55px; height: 55px; border-radius: 50%; border: 2px solid white; object-fit: cover; }
